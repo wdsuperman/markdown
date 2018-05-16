@@ -1,6 +1,6 @@
 <template>
   <div>
-    content
+    <div v-html="htmlPost"></div>
   </div>
 </template>
 
@@ -8,8 +8,12 @@
 import axios from "axios"
 export default {
   name:'BlogContent',
+  data:()=>({
+    post:''
+  }),
   created(){
-    const uri ='https://raw.githubusercontent.com/wdsuperman/markdown/master/data/posts/1.md'
+    const id = this.$toute.params.id
+    const uri =`https://raw.githubusercontent.com/wdsuperman/markdown/master/data/posts/${id}.md`
     axios.get(uri).then(res => {
       console.log(res.data)
     })

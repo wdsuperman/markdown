@@ -16,10 +16,15 @@ import axios from 'axios'
 
 export default {
   name: 'BlogHome',
-  computed: {
-    posts() {
-      return this.$store.state.blog.all
-    }
+  data:()=>({
+    posts:[]
+  }),
+  created(){
+    const url ='https://raw.githubusercontent.com/wdsuperman/markdown/master/data/posts/index.json'
+    axios.get(url).then(res =>{
+      console.log('我的目录', res.data)
+      this.posts = res.data
+    })
   }
 }
 </script>
