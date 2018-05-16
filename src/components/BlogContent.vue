@@ -1,25 +1,22 @@
 <template>
-  <div v-if="post">
-    <h1>{{ post.title }}</h1>
-    <p>
-      {{ post.body }}
-    </p>
+  <div>
+    content
   </div>
 </template>
 
 <script>
+import axios from "axios"
 export default {
-  name: 'BlogContent',
-  computed: {
-    id() {
-      return this.$route.params.id
-    },
-    posts() {
-      return this.$store.state.blog.all
-    },
-    post() {
-      return this.posts.find(t => t.id == this.id)
-    }
+  name:'BlogContent',
+  created(){
+    const uri ='https://raw.githubusercontent.com/wdsuperman/markdown/master/data/posts/1.md'
+    axios.get(uri).then(res => {
+      console.log(res.data)
+    })
   }
 }
 </script>
+
+<style>
+
+</style>
